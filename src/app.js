@@ -11,6 +11,7 @@ const app = express();
 app.use(express.json());
 const port = process.env.PORT || 2070;
 
+
 // -------------  Adding New Skins -------------
 app.post("/add", async (req, res) => {
     try {
@@ -57,6 +58,19 @@ app.post("/search", async (req, res) => {
         return res.status(400).send(e);
     }
 });
+
+// ----------------- Popular and Latest Skins -------------
+app.get("/", async (req, res) => {
+    try {
+        const popular = await Skins.find({ isPopular: true });
+        const latest = await Skins.find({ isLatest: true });
+        const result = [{ section: "Popular", items: popular }, { section: "Latest", items: latest }];
+        return res.send(result);
+    }
+    catch (e) {
+        return res.status(400).send(e);
+    }
+})
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");

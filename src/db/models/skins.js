@@ -42,6 +42,14 @@ const skinsSchema = new mongoose.Schema({
             return validator.isURL(value);
         }
     },
+    isPopular: {
+        type: Boolean,
+        default: true,
+    },
+    isLatest: {
+        type: Boolean,
+        default: true,
+    }
 })
 
 //Creating collection
