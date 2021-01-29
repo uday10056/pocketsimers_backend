@@ -3,6 +3,8 @@
 require("./db/conn");
 //External Libraries
 const express = require("express");
+const dotenv = require('dotenv');
+dotenv.config();
 //  Models
 const Skins = require("./db/models/skins");
 // --------------- Import Ends-------------
